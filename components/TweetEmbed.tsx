@@ -11,11 +11,9 @@ interface TweetEmbedProps {
 export default function TweetEmbed({ tweetId, author, fallbackText }: TweetEmbedProps) {
   return (
     <div className="tweet-container relative">
-      {/* Fixed aspect ratio container to prevent CLS */}
-      <div className="aspect-[16/9] w-full min-h-[400px] flex items-center justify-center">
-        <div className="w-full h-full">
-          <Tweet id={tweetId} />
-        </div>
+      {/* Let tweet define its natural height; ensure it fills width */}
+      <div className="w-full">
+        <Tweet id={tweetId} />
       </div>
       
       {/* Fallback for when JS is disabled */}

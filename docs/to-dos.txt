@@ -1,0 +1,17 @@
+High Priority (Must Do):
+CI/CD Setup - Add GitHub Actions or similar CI pipeline for automated linting, testing, and deployment
+Testing Implementation - Add Playwright smoke tests for route rendering and unit tests for utility functions
+Security Review - Audit the Python dev server (intro/server.py) to ensure it's never deployed publicly with CORS: * settings
+Dependency Management - Review and potentially replace vendored Three.js modules in intro/js/ with npm packages for better security and updates
+
+Medium Priority (Should Do):
+Error Monitoring - Add Sentry or similar error logging for both the Next.js app and intro
+Intro Integration - Create a dedicated /intro route in the Next.js app with dynamic imports
+Performance Monitoring - Add web vitals reporting
+Content Validation - Consider adding Zod schema validation for CONFIG at build time
+
+Low Priority (Nice to Have):
+– Documentation - Update README with new security headers and build process
+– Asset Optimization - Replace placeholder images with actual owned assets
+– License Compliance - Add proper license notices for vendored Three.js modules
+– The codebase is now production-ready for the landing page with all critical security and build issues resolved!

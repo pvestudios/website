@@ -48,3 +48,18 @@ html, body {
 .tweet-container [data-theme="dark"] {
   @apply bg-zinc-900 border-zinc-800;
 }
+
+/* Ensure embedded tweets never overflow their card width */
+.tweet-container article,
+.tweet-container .react-tweet-theme,
+.tweet-container iframe,
+.tweet-container blockquote,
+.tweet-container > div {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Hide any stray overflow from internal inline styles */
+.tweet-container {
+  overflow: hidden;
+}
