@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Derived from glowing arrow logo */
+  --bg-950: #00040d;   /* midnight black */
+  --bg-900: #0a0f1a;   /* deep slate */
+  --brand-500: #39ff14; /* neon green */
+  --brand-400: #00f0ff; /* neon cyan */
+  --brand-300: #8a2be2; /* electric purple */
+  --brand-200: #ffea00; /* glow yellow */
+}
+
+html, body {
+  @apply bg-[#00040d] text-zinc-100 antialiased scroll-smooth;
+}
+
+/* Glow helpers */
+.glow {
+  box-shadow: 0 0 24px theme(colors.brand.500 / 0.6), 0 0 48px theme(colors.brand.400 / 0.4);
+}
+.glow-text {
+  text-shadow: 0 0 16px rgba(57,255,20,.6), 0 0 32px rgba(0,240,255,.4);
+}
+
+/* Section vertical rhythm */
+.section {
+  @apply py-10 md:py-10;
+}
+
+/* Card styling */
+.card {
+  @apply rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800 shadow-xl; 
+}
+
+/* Preserve line breaks in text */
+.preserve-breaks {
+  white-space: pre-line;
+}
+
+/* Subtle gradient background */
+.bg-grid {
+  background-image: radial-gradient(ellipse at 20% 10%, rgba(57,255,20,0.12), transparent 40%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,240,255,0.12), transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(138,43,226,0.12), transparent 40%);
+}
+
+/* Tweet styling */
+.tweet-container {
+  @apply w-full;
+}
+
+.tweet-container [data-theme="dark"] {
+  @apply bg-zinc-900 border-zinc-800;
+}

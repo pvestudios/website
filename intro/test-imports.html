@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Import Test</title>
+</head>
+<body>
+    <div id="test-results"></div>
+    <script type="module">
+        try {
+            console.log('Testing imports...');
+            
+            // Test THREE.js import
+            const THREE = await import('./js/three.module.min.js');
+            console.log('✓ THREE.js imported successfully');
+            document.getElementById('test-results').innerHTML += '<p>✓ THREE.js imported successfully</p>';
+            
+            // Test GLTFLoader import
+            const { GLTFLoader } = await import('./js/loaders/GLTFLoader.js');
+            console.log('✓ GLTFLoader imported successfully');
+            document.getElementById('test-results').innerHTML += '<p>✓ GLTFLoader imported successfully</p>';
+            
+            // Test DRACOLoader import
+            const { DRACOLoader } = await import('./js/loaders/DRACOLoader.js');
+            console.log('✓ DRACOLoader imported successfully');
+            document.getElementById('test-results').innerHTML += '<p>✓ DRACOLoader imported successfully</p>';
+            
+            // Test portal shader import
+            const { PortalShader } = await import('./js/portal-shader.js');
+            console.log('✓ PortalShader imported successfully');
+            document.getElementById('test-results').innerHTML += '<p>✓ PortalShader imported successfully</p>';
+            
+            // Test particles import
+            const { ParticleSystem } = await import('./js/particles.js');
+            console.log('✓ ParticleSystem imported successfully');
+            document.getElementById('test-results').innerHTML += '<p>✓ ParticleSystem imported successfully</p>';
+            
+            // Test audio import
+            const { IntroAudio } = await import('./js/audio.js');
+            console.log('✓ IntroAudio imported successfully');
+            document.getElementById('test-results').innerHTML += '<p>✓ IntroAudio imported successfully</p>';
+            
+            // Test utils import
+            const { DeviceCapabilities } = await import('./js/utils.js');
+            console.log('✓ Utils imported successfully');
+            document.getElementById('test-results').innerHTML += '<p>✓ Utils imported successfully</p>';
+            
+            console.log('All imports successful!');
+            document.getElementById('test-results').innerHTML += '<p style="color: green; font-weight: bold;">🎉 All imports successful!</p>';
+            
+        } catch (error) {
+            console.error('Import error:', error);
+            document.getElementById('test-results').innerHTML += `<p style="color: red;">❌ Import error: ${error.message}</p>`;
+        }
+    </script>
+</body>
+</html>

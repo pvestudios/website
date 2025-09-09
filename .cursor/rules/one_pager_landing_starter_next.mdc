@@ -1,0 +1,645 @@
+# File tree
+
+```
+one-pager/
+├─ app/
+│  ├─ globals.css
+│  ├─ layout.tsx
+│  └─ page.tsx
+├─ components/
+│  ├─ Navbar.tsx
+│  ├─ Hero.tsx
+│  ├─ Section.tsx
+│  ├─ Problem.tsx
+│  ├─ Solution.tsx
+│  ├─ Features.tsx
+│  ├─ Testimonials.tsx
+│  ├─ Pricing.tsx
+│  ├─ FAQ.tsx
+│  ├─ FinalCTA.tsx
+│  └─ Footer.tsx
+├─ lib/
+│  └─ constants.ts
+├─ public/
+│  ├─ logo-glow.png
+│  └─ og-image.png
+├─ tailwind.config.ts
+├─ postcss.config.js
+├─ tsconfig.json
+├─ next.config.ts
+├─ package.json
+└─ README.md
+```
+
+---
+
+# app/globals.css
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Derived from glowing arrow logo */
+  --bg-950: #00040d;   /* midnight black */
+  --bg-900: #0a0f1a;   /* deep slate */
+  --brand-500: #39ff14; /* neon green */
+  --brand-400: #00f0ff; /* neon cyan */
+  --brand-300: #8a2be2; /* electric purple */
+  --brand-200: #ffea00; /* glow yellow */
+}
+
+html, body {
+  @apply bg-[#00040d] text-zinc-100 antialiased scroll-smooth;
+}
+
+/* Glow helpers */
+.glow {
+  box-shadow: 0 0 24px theme(colors.brand.500 / 0.6), 0 0 48px theme(colors.brand.400 / 0.4);
+}
+.glow-text {
+  text-shadow: 0 0 16px rgba(57,255,20,.6), 0 0 32px rgba(0,240,255,.4);
+}
+
+/* Section vertical rhythm */
+.section {
+  @apply py-20 md:py-28;
+}
+
+/* Card styling */
+.card {
+  @apply rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-zinc-800 shadow-xl; 
+}
+
+/* Subtle gradient background */
+.bg-grid {
+  background-image: radial-gradient(ellipse at 20% 10%, rgba(57,255,20,0.12), transparent 40%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,240,255,0.12), transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(138,43,226,0.12), transparent 40%);
+}
+```
+
+---
+
+# app/layout.tsx
+
+```tsx
+import type { Metadata } from 'next';
+import './globals.css';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'Glowing Arrow — Contemporary Landing',
+  description: 'A fast, accessible 2025-grade one-pager built with Next.js + Tailwind.',
+  openGraph: {
+    title: 'Glowing Arrow — Contemporary Landing',
+    description: 'A fast, accessible 2025-grade one-pager built with Next.js + Tailwind.',
+    images: ['/og-image.png'],
+    type: 'website'
+  },
+  metadataBase: new URL('https://example.com'),
+  themeColor: '#00040d'
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={inter.className}>
+      <body className="bg-[#00040d]">
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+---
+
+# app/page.tsx
+
+```tsx
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import Problem from '@/components/Problem';
+import Solution from '@/components/Solution';
+import Features from '@/components/Features';
+import Testimonials from '@/components/Testimonials';
+import Pricing from '@/components/Pricing';
+import FAQ from '@/components/FAQ';
+import FinalCTA from '@/components/FinalCTA';
+import Footer from '@/components/Footer';
+
+export default function Page() {
+  return (
+    <main className="bg-grid min-h-screen">
+      <Navbar />
+      <Hero />
+      <Problem />
+      <Solution />
+      <Features />
+      <Testimonials />
+      <Pricing />
+      <FAQ />
+      <FinalCTA />
+      <Footer />
+    </main>
+  );
+}
+```
+
+---
+
+# components/Navbar.tsx
+
+```tsx
+'use client';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+export default function Navbar() {
+  const [solid, setSolid] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > 16);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <header className={`sticky top-0 z-50 transition-all ${solid ? 'backdrop-blur-md bg-zinc-950/70 border-b border-zinc-800' : 'bg-transparent'}`}>
+      <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+        <Link href="#" className="flex items-center gap-2 group">
+          <img src="/logo-glow.png" alt="Logo" className="h-8 w-8 rounded-full" />
+          <span className="font-semibold tracking-tight group-hover:glow-text">Glowing Arrow</span>
+        </Link>
+        <div className="hidden md:flex items-center gap-8 text-sm text-zinc-300">
+          <a href="#features" className="hover:text-white">Features</a>
+          <a href="#pricing" className="hover:text-white">Pricing</a>
+          <a href="#faq" className="hover:text-white">FAQ</a>
+        </div>
+        <a href="#cta" className="ml-4 inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold bg-brand-500/90 hover:bg-brand-500 transition glow">Get Started</a>
+      </nav>
+    </header>
+  );
+}
+```
+
+---
+
+# components/Section.tsx
+
+```tsx
+import { ReactNode } from 'react';
+
+export default function Section({ id, children, className = '' }: { id?: string; children: ReactNode; className?: string }) {
+  return (
+    <section id={id} className={`section ${className}`}>
+      <div className="mx-auto max-w-6xl px-4">{children}</div>
+    </section>
+  );
+}
+```
+
+---
+
+# components/Hero.tsx
+
+```tsx
+import Section from './Section';
+
+export default function Hero() {
+  return (
+    <Section>
+      <div className="grid md:grid-cols-2 items-center gap-10">
+        <div>
+          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Launch Faster</p>
+          <h1 className="mt-3 text-4xl md:text-6xl font-extrabold leading-tight glow-text">
+            Build a landing page that actually converts.
+          </h1>
+          <p className="mt-5 text-zinc-300 max-w-prose">
+            A contemporary one-pager template with the right structure and motion to guide users from attention to action.
+          </p>
+          <div className="mt-8 flex gap-3">
+            <a href="#cta" className="rounded-xl px-6 py-3 font-semibold bg-brand-500 hover:bg-brand-500/90 transition glow">Get Started</a>
+            <a href="#features" className="rounded-xl px-6 py-3 font-semibold border border-zinc-800 hover:border-zinc-700">See Features</a>
+          </div>
+        </div>
+        <div className="relative">
+          <div className="absolute -inset-10 -z-10 blur-3xl opacity-70" style={{background: 'conic-gradient(from 180deg at 50% 50%, rgba(57,255,20,0.35), rgba(0,240,255,0.35), rgba(138,43,226,0.35), rgba(255,234,0,0.25), rgba(57,255,20,0.35))'}}/>
+          <img src="/logo-glow.png" alt="Glowing Arrow" className="mx-auto h-72 w-72 object-contain" />
+        </div>
+      </div>
+    </Section>
+  );
+}
+```
+
+---
+
+# components/Problem.tsx
+
+```tsx
+import Section from './Section';
+
+export default function Problem() {
+  return (
+    <Section className="">
+      <div className="card p-8 md:p-10">
+        <h2 className="text-2xl md:text-3xl font-bold">The problem</h2>
+        <p className="mt-4 text-zinc-300 max-w-3xl">
+          Most one-pagers look nice but fail to drive action. Poor hierarchy, slow loading, and unclear copy cost conversions.
+        </p>
+      </div>
+    </Section>
+  );
+}
+```
+
+---
+
+# components/Solution.tsx
+
+```tsx
+import Section from './Section';
+
+const bullets = [
+  { title: 'Proven structure', desc: 'Hero → Problem → Solution → Features → Social proof → Pricing → FAQ → Final CTA.' },
+  { title: 'Visual hierarchy', desc: 'Inter font, bold headings, scannable copy following F-pattern.' },
+  { title: 'Motion with purpose', desc: 'Subtle, performance-friendly glow and reveal-on-scroll.' },
+  { title: 'Fast & accessible', desc: 'Optimized assets, semantic tags, WCAG 2.2 compliant.' }
+];
+
+export default function Solution() {
+  return (
+    <Section>
+      <div className="grid md:grid-cols-2 gap-6">
+        {bullets.map((b) => (
+          <div key={b.title} className="card p-6">
+            <h3 className="text-lg font-semibold">{b.title}</h3>
+            <p className="mt-2 text-zinc-300">{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+```
+
+---
+
+# components/Features.tsx
+
+```tsx
+import Section from './Section';
+
+const items = [
+  { title: 'Neon CTA buttons', desc: 'High-contrast 10% accent usage for clear actions.' },
+  { title: 'Cards & grids', desc: 'Readable blocks with proximity and spacing rhythm.' },
+  { title: 'Dark aesthetic', desc: 'Midnight background + neon hues inspired by the logo.' },
+  { title: 'SEO ready', desc: 'OG tags, metadata, and social previews pre-wired.' }
+];
+
+export default function Features() {
+  return (
+    <Section id="features">
+      <h2 className="text-2xl md:text-3xl font-bold">Features</h2>
+      <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {items.map((f) => (
+          <div key={f.title} className="card p-6 hover:glow transition">
+            <h3 className="font-semibold">{f.title}</h3>
+            <p className="mt-2 text-zinc-300">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+```
+
+---
+
+# components/Testimonials.tsx
+
+```tsx
+import Section from './Section';
+
+const quotes = [
+  { name: 'Alex M.', text: 'Clean, fast, and converts. The glow accents make it pop without being distracting.' },
+  { name: 'Jordan R.', text: 'Setup in minutes. The structure keeps users moving toward the CTA.' }
+];
+
+export default function Testimonials() {
+  return (
+    <Section>
+      <div className="grid md:grid-cols-2 gap-6">
+        {quotes.map((q) => (
+          <figure key={q.name} className="card p-6">
+            <blockquote className="text-zinc-200">“{q.text}”</blockquote>
+            <figcaption className="mt-4 text-sm text-zinc-400">{q.name}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </Section>
+  );
+}
+```
+
+---
+
+# components/Pricing.tsx
+
+```tsx
+import Section from './Section';
+
+export default function Pricing() {
+  return (
+    <Section id="pricing">
+      <h2 className="text-2xl md:text-3xl font-bold">Pricing</h2>
+      <div className="mt-8 grid md:grid-cols-3 gap-6">
+        {['Starter', 'Pro', 'Scale'].map((tier, i) => (
+          <div key={tier} className={`card p-6 ${i===1 ? 'ring-2 ring-brand-500 glow' : ''}`}>
+            <h3 className="text-lg font-semibold">{tier}</h3>
+            <p className="mt-3 text-3xl font-extrabold">${i===0?9:i===1?29:79}<span className="text-sm font-normal text-zinc-400">/mo</span></p>
+            <ul className="mt-4 text-sm text-zinc-300 space-y-2">
+              <li>All core sections</li>
+              <li>Fast & accessible</li>
+              <li>SEO ready</li>
+            </ul>
+            <a href="#cta" className="mt-6 inline-flex w-full justify-center rounded-xl px-4 py-2 font-semibold bg-brand-500 hover:bg-brand-500/90 transition">Choose {tier}</a>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+```
+
+---
+
+# components/FAQ.tsx
+
+```tsx
+import Section from './Section';
+
+const faqs = [
+  { q: 'Is it mobile-first?', a: 'Yes. The layout is designed from small to large screens with fluid spacing.' },
+  { q: 'Can I change colors?', a: 'All colors live in Tailwind config and CSS variables for quick updates.' },
+  { q: 'Is it accessible?', a: 'Typography, contrast, and keyboard navigation follow WCAG 2.2 guidance.' }
+];
+
+export default function FAQ() {
+  return (
+    <Section id="faq">
+      <h2 className="text-2xl md:text-3xl font-bold">FAQs</h2>
+      <div className="mt-6 divide-y divide-zinc-800 border border-zinc-800 rounded-2xl">
+        {faqs.map((f, i) => (
+          <details key={i} className="group open:bg-zinc-900/50 px-6 py-4">
+            <summary className="cursor-pointer list-none font-medium text-zinc-100 flex items-center justify-between">
+              {f.q}
+              <span className="text-brand-400 group-open:rotate-45 transition">+</span>
+            </summary>
+            <p className="mt-3 text-zinc-300">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </Section>
+  );
+}
+```
+
+---
+
+# components/FinalCTA.tsx
+
+```tsx
+import Section from './Section';
+
+export default function FinalCTA() {
+  return (
+    <Section id="cta" className="relative">
+      <div className="absolute inset-0 -z-10 blur-3xl opacity-50" style={{background: 'radial-gradient(60% 60% at 50% 50%, rgba(57,255,20,0.25), transparent), radial-gradient(40% 40% at 80% 20%, rgba(0,240,255,0.25), transparent), radial-gradient(40% 40% at 20% 80%, rgba(138,43,226,0.25), transparent)'}}/>
+      <div className="text-center card py-14">
+        <h2 className="text-3xl md:text-4xl font-extrabold glow-text">Ready to launch?</h2>
+        <p className="mt-4 text-zinc-300">Ship a focused one-pager with modern motion and neon clarity.</p>
+        <a href="#" className="mt-8 inline-flex items-center rounded-xl px-8 py-3 font-semibold bg-brand-500 hover:bg-brand-500/90 transition glow">Get Started</a>
+      </div>
+    </Section>
+  );
+}
+```
+
+---
+
+# components/Footer.tsx
+
+```tsx
+import Section from './Section';
+
+export default function Footer() {
+  return (
+    <footer className="mt-10 border-t border-zinc-800">
+      <Section className="py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-400">
+          <div className="flex items-center gap-2">
+            <img src="/logo-glow.png" className="h-6 w-6" alt="Logo"/>
+            <span>© {new Date().getFullYear()} Glowing Arrow</span>
+          </div>
+          <nav className="flex items-center gap-6">
+            <a href="#features" className="hover:text-zinc-200">Features</a>
+            <a href="#pricing" className="hover:text-zinc-200">Pricing</a>
+            <a href="#faq" className="hover:text-zinc-200">FAQ</a>
+          </nav>
+        </div>
+      </Section>
+    </footer>
+  );
+}
+```
+
+---
+
+# lib/constants.ts
+
+```ts
+export const SITE = {
+  name: 'Glowing Arrow',
+  url: 'https://example.com'
+};
+```
+
+---
+
+# tailwind.config.ts
+
+```ts
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: [
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          200: '#ffea00',
+          300: '#8a2be2',
+          400: '#00f0ff',
+          500: '#39ff14',
+        },
+      },
+      boxShadow: {
+        glow: '0 0 24px rgba(57,255,20,0.3), 0 0 48px rgba(0,240,255,0.2)'
+      },
+      backgroundImage: {
+        'hero-gradient': 'radial-gradient(60% 60% at 50% 50%, rgba(57,255,20,0.15), transparent), radial-gradient(40% 40% at 85% 10%, rgba(0,240,255,0.15), transparent), radial-gradient(40% 40% at 15% 90%, rgba(138,43,226,0.15), transparent)'
+      }
+    }
+  },
+  plugins: [],
+};
+export default config;
+```
+
+---
+
+# postcss.config.js
+
+```js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
+
+---
+
+# tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": []
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
+```
+
+---
+
+# next.config.ts
+
+```ts
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  images: {
+    unoptimized: true,
+  },
+  reactStrictMode: true,
+};
+export default nextConfig;
+```
+
+---
+
+# package.json
+
+```json
+{
+  "name": "one-pager",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwindcss": "^3.4.9",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.5.4"
+  }
+}
+```
+
+---
+
+# public/logo-glow.png
+
+```
+Place your glowing arrow logo file here. Name it `logo-glow.png` (512×512 recommended, transparent if possible).
+```
+
+---
+
+# public/og-image.png
+
+```
+A 1200×630 social preview image. You can export a hero screenshot or the logo on a glow gradient.
+```
+
+---
+
+# README.md
+
+```md
+# Contemporary One‑Pager (Next.js + Tailwind + Inter)
+
+A clean, accessible 2025‑grade landing page scaffold using your neon glow palette.
+
+## Quickstart
+
+```bash
+pnpm create next-app one-pager --ts --eslint --tailwind --app --import-alias @/*
+# then replace generated files with this repo content
+pnpm install
+pnpm dev
+```
+
+Open http://localhost:3000.
+
+## Customize
+- **Colors:** edit `tailwind.config.ts` and `app/globals.css` variables.
+- **Copy:** update text inside `components/*`.
+- **Sections:** add/remove in `app/page.tsx`.
+- **SEO:** adjust `app/layout.tsx` metadata + `/public/og-image.png`.
+
+## Deployment
+- **Vercel:** push to GitHub, import project in Vercel, set framework = Next.js.
+- **Render/Netlify:** static adapter not needed (Next server OK). Ensure Node 18+.
+
+## Accessibility & Performance Checklist
+- Sufficient color contrast on text over dark backgrounds.
+- Alt text for images, focus states for links and buttons.
+- Lighthouse Performance ≥ 90: optimize `logo-glow.png` size, prefer PNG/WebP.
+- Reduce motion option by respecting `prefers-reduced-motion` if you add more animations.
+```

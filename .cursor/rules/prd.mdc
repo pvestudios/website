@@ -1,0 +1,124 @@
+# PDR – Contemporary One-Pager Landing Page (2025 Standard)
+
+## 1. Purpose & Goal
+
+* Create a **one-page landing website** that is:
+
+  * Clean, modern, and conversion-focused.
+  * Fully responsive (mobile-first).
+  * Optimized for **fast load times** and **accessibility (WCAG 2.2)**.
+  * Built with **clarity + flow** to maximize trust and conversions.
+* Visual identity built around the **glowing arrow logo** as main symbol & color source.
+
+---
+
+## 2. Design Foundation
+
+### Font
+
+* **Primary font:** Inter (Google Fonts).
+* Usage:
+
+  * Headings: Bold
+  * Body: Regular
+  * Captions / fine print: Smaller, Light
+
+### Color Palette (from glowing arrow logo)
+
+* **Primary:** Neon Green (#39FF14 or sampled from logo) → brand highlights.
+* **Secondary:** Neon Purple / Magenta (#BB00FF or sampled).
+* **Accent:** Neon Blue (#00F0FF) + Yellow glow (#FFEA00).
+* **Background:** Dark/black gradient (#000000 → #0A0A0A) for contrast.
+
+Use **60-30-10 rule**:
+
+* 60% background dark shades
+* 30% neon secondary (purple/blue)
+* 10% neon accent (green/yellow highlights, CTA buttons).
+
+### Layout & Structure
+
+* **F-pattern scanning** (users read left-to-right, top-to-bottom).
+* **Law of Proximity:** group related content into sections.
+* **Visual hierarchy:** big bold headlines, medium body, small captions.
+
+---
+
+## 3. Section Structure (Flow)
+
+Follow the attached suggested structure:
+
+1. **Hero Section (Headline + CTA)**
+
+   * Full viewport height.
+   * Dark background with subtle neon gradient glow.
+   * Centered glowing arrow logo animation (slow pulse or glow).
+   * Headline: Bold, inspiring statement.
+   * Subheadline: Short problem/solution value line.
+   * CTA button (accent color, glowing hover effect).
+
+2. **Problem Statement**
+
+   * 2–3 short sentences about the pain point.
+   * Minimalist icons or visuals in neon outline style.
+
+3. **Solution / Benefits**
+
+   * 3–4 benefit blocks with icons.
+   * Left/right alternating layout.
+   * Use glowing arrow color palette for section highlights.
+
+4. **Features**
+
+   * Grid (3–4 cards).
+   * Each with icon, short title, and one-liner.
+   * Hover effect: subtle glow or scale-up.
+
+5. **Testimonials / Social Proof**
+
+   * Carousel or 2–3 side-by-side quotes.
+   * Circular avatars with neon border glow.
+
+6. **Pricing (if needed)**
+
+   * 3-column pricing table.
+   * Middle one highlighted with glow outline.
+
+7. **FAQs**
+
+   * Accordion dropdowns.
+   * Neon underline hover effect on questions.
+
+8. **Final CTA**
+
+   * Repeat headline + CTA button.
+   * Background: darker with gradient glow inspired by logo.
+
+---
+
+## 4. Interactions & Animations
+
+* CTA hover: glow intensity increase.
+* Section fade-ins on scroll (Framer Motion or CSS).
+* Smooth scrolling between sections.
+* Logo: subtle **pulsating glow animation**.
+
+---
+
+## 5. Technical Guidelines
+
+* **Stack:** Next.js (or React if simpler) + Tailwind CSS.
+* **Components:**
+
+  * Cards, Buttons, Accordion (use shadcn/ui).
+* **Performance:** Optimize logo & assets for web (SVG/PNG).
+* **SEO:** Meta tags, OG image using the glowing arrow.
+* **Accessibility:** High contrast, alt text, keyboard nav.
+
+---
+
+## 6. Deliverables
+
+* A **fully coded one-pager** ready for deployment (Vercel/Render).
+* Responsive across mobile, tablet, desktop.
+* Easy to customize content (text/images via config file or JSON).

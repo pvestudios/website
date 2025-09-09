@@ -1,0 +1,228 @@
+/* Intro-specific styles and animations */
+
+/* Neon glow effects */
+.neon-glow {
+    box-shadow: 
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 15px currentColor,
+        0 0 20px currentColor;
+}
+
+/* Pulsing animation for portal elements */
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Screen shake for explosions */
+@keyframes screen-shake {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(-2px) translateY(-1px); }
+    20% { transform: translateX(2px) translateY(1px); }
+    30% { transform: translateX(-1px) translateY(-2px); }
+    40% { transform: translateX(1px) translateY(2px); }
+    50% { transform: translateX(-1px) translateY(-1px); }
+    60% { transform: translateX(1px) translateY(1px); }
+    70% { transform: translateX(-1px) translateY(1px); }
+    80% { transform: translateX(1px) translateY(-1px); }
+    90% { transform: translateX(-1px) translateY(1px); }
+}
+
+.screen-shake {
+    animation: screen-shake 0.4s ease-in-out;
+}
+
+/* Fade in animation for UI elements */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fade-in 0.6s ease-out;
+}
+
+/* Progress bar fill animation */
+@keyframes progress-fill {
+    from { width: 0%; }
+    to { width: var(--progress-width, 0%); }
+}
+
+.progress-fill {
+    animation: progress-fill 0.3s ease-out;
+}
+
+/* Button press animation */
+@keyframes button-press {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.button-press {
+    animation: button-press 0.2s ease-out;
+}
+
+/* Portal energy effect */
+@keyframes portal-energy {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.portal-energy {
+    background: linear-gradient(
+        45deg,
+        #00ff88,
+        #00ffff,
+        #8800ff,
+        #ff00ff,
+        #00ff88
+    );
+    background-size: 400% 400%;
+    animation: portal-energy 3s ease-in-out infinite;
+}
+
+/* Loading dots animation */
+@keyframes loading-dots {
+    0%, 20% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.loading-dots::after {
+    content: '';
+    animation: loading-dots 1.5s infinite;
+}
+
+.loading-dots::before {
+    content: '...';
+    animation: loading-dots 1.5s infinite 0.2s;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .progress-container {
+        top: 10px;
+        padding: 6px 12px;
+    }
+    
+    .progress-bar {
+        width: 150px;
+    }
+    
+    .skip-button {
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+    
+    .instructions {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .progress-fill {
+        background: #fff;
+    }
+    
+    .skip-button {
+        border-color: #fff;
+        color: #fff;
+    }
+    
+    .up-button {
+        border-color: #fff;
+        color: #fff;
+    }
+}
+
+/* Dark mode support (already dark by default) */
+@media (prefers-color-scheme: light) {
+    .fallback-screen {
+        background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+    }
+    
+    .fallback-content {
+        color: #000;
+    }
+    
+    .fallback-content h1 {
+        background: linear-gradient(45deg, #0066cc, #0099ff, #6600cc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+/* Performance optimizations */
+#intro-ui * {
+    will-change: transform, opacity;
+}
+
+/* Disable text selection on UI elements */
+#intro-ui button,
+#intro-ui .progress-container,
+#intro-ui .instructions {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Smooth transitions for all interactive elements */
+button, .progress-fill, .white-flash {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* White flash specific styling */
+#white-flash {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    opacity: 0;
+    transition: opacity 280ms ease;
+    pointer-events: none;
+}
+
+/* Custom scrollbar for any overflow content */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 255, 0.5);
+}
