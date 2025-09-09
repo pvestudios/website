@@ -1,4 +1,6 @@
-export const CONFIG = {
+import { SiteConfig } from './types';
+
+export const CONFIG: SiteConfig = {
   // Site metadata
   site: {
     name: 'PVE Studios',

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { CONFIG } from '@/lib/config';
@@ -14,7 +14,10 @@ export const metadata: Metadata = {
     images: [CONFIG.site.ogImage],
     type: 'website'
   },
-  metadataBase: new URL(CONFIG.site.url),
+  metadataBase: new URL(CONFIG.site.url)
+};
+
+export const viewport: Viewport = {
   themeColor: CONFIG.site.themeColor
 };
 

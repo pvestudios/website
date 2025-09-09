@@ -1,3 +1,5 @@
+'use client';
+
 import { Tweet } from 'react-tweet';
 
 interface TweetEmbedProps {
@@ -8,7 +10,7 @@ interface TweetEmbedProps {
 
 export default function TweetEmbed({ tweetId, author, fallbackText }: TweetEmbedProps) {
   return (
-    <div className="tweet-container relative" suppressHydrationWarning>
+    <div className="tweet-container relative">
       {/* Fixed aspect ratio container to prevent CLS */}
       <div className="aspect-[16/9] w-full min-h-[400px] flex items-center justify-center">
         <div className="w-full h-full">

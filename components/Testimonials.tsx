@@ -1,6 +1,8 @@
 import Section from './Section';
 import { CONFIG } from '@/lib/config';
-import TweetEmbed from './TweetEmbed';
+import dynamic from 'next/dynamic';
+
+const TweetEmbed = dynamic(() => import('./TweetEmbed'), { ssr: false });
 
 export default function Testimonials() {
   return (
