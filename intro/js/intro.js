@@ -32,7 +32,7 @@ class IntroApp {
         this.t = 0;
         this.moving = false;
         this.speed = 6.0; // meters per second
-        this._curveLength = 0;
+        this.curveLength = 0;
         this._frameCount = 0;
         this._ray = null;
         this._groundMeshes = [];
@@ -70,22 +70,24 @@ class IntroApp {
         this._timeouts = [];
         this._eventListeners = [];
         this._disposables = [];
+        this._raf = null;
         
         // Error handling
         this._errorCount = 0;
         this._maxRetries = 3;
         
-        // Check if we should skip the intro
-        if (AccessibilityUtils.shouldSkipIntro()) {
+        this.init();
+    }
+    
+    async init() {
+        // Early bailout for reduced motion or WebGL unavailability
+        if (AccessibilityUtils.checkReducedMotion() || !AccessibilityUtils.checkWebGLSupport()) {
+            console.log('Skipping intro due to reduced motion preference or WebGL unavailability');
             this.showFallback();
             this._addTimeout(() => IntroEvents.dispatchComplete(), 100);
             return;
         }
         
-        this.init();
-    }
-    
-    async init() {
         try {
             await this._initializeWithRetry();
         } catch (error) {
@@ -414,7 +416,7 @@ class IntroApp {
         this.spline = this.createStraightPath(100, 50);
         
         // Precompute curve length for distance-based movement
-        this._curveLength = this.spline.getLength();
+        this.curveLength = this.spline.getLength();
         
         // Create ground
         this.createGround();
@@ -925,10 +927,9 @@ class IntroApp {
         
         // Update character movement with distance-based calculation
         if (this.moving && this.t < 1 && this.soldier && this.soldier.group) {
-            const metersPerSec = this.speed;
-            const dist = metersPerSec * (deltaTime / 1000);
-            const dt = dist / this._curveLength;
-            this.t = Math.min(1, this.t + dt);
+            const metersPerSec = 6; // tune
+            const dist = metersPerSec * deltaTime;
+            this.t = Math.min(1, this.t + dist / this.curveLength);
             
             // Update soldier position and animation
             const point = this.spline.getPoint(this.t);
@@ -998,38 +999,43 @@ class IntroApp {
     }
     
     updateCamera() {
-        // Follow the soldier character
-        if (!this.soldier) return;
+        // Follow the soldier character using spline tangent
+        if (!this.soldier || !this.spline) return;
         
-        // Position camera straight behind character
-        const backOffset = new THREE.Vector3(0, 0, 8); // 8 units behind
-        const upOffset = new THREE.Vector3(0, 3.2, 0); // 3.2 units up
+        const t = this.t;
+        const pos = this.spline.getPoint(t);
+        const dir = this.spline.getTangent(t).normalize();
         
-        // Calculate camera position
-        const targetPosition = this.soldier.group.position.clone()
-            .add(backOffset)
-            .add(upOffset);
+        // Position camera behind soldier along tangent
+        const camPos = pos.clone()
+            .add(dir.clone().multiplyScalar(-8))
+            .add(new THREE.Vector3(0, 4, 0));
         
         // Smooth camera follow
-        this.camera.position.lerp(targetPosition, 0.1);
+        this.camera.position.lerp(camPos, 0.15);
         
-        // Look at character with slight downward angle
-        const lookTarget = this.soldier.group.position.clone();
-        lookTarget.y += 1.2; // Look at character's head level
+        // Look at point ahead of soldier along tangent
+        const lookTarget = pos.clone()
+            .add(dir.clone().multiplyScalar(2))
+            .add(new THREE.Vector3(0, 1.5, 0));
+        
         this.camera.lookAt(lookTarget);
+        
+        // Face soldier in movement direction
+        this.soldier.group.rotation.y = Math.atan2(dir.x, dir.z);
     }
     
     updateProgressBar() {
         if (this.progressBar) {
             const progress = this.t * 100;
-            this.progressBar.style.width = `${progress}%`;
+            this.progressBar.style.width = (this.t * 100).toFixed(0) + '%';
             
             // Cache progress text element
             if (!this.progressText) {
                 this.progressText = document.querySelector('.progress-text');
             }
             if (this.progressText) {
-                this.progressText.textContent = `${Math.round(progress)}%`;
+                this.progressText.textContent = (this.t * 100).toFixed(0) + '%';
             }
         }
     }
@@ -1156,6 +1162,12 @@ class IntroApp {
         // Stop animation loop
         this.isInitialized = false;
         
+        // Cancel animation frame
+        if (this._raf) {
+            cancelAnimationFrame(this._raf);
+            this._raf = null;
+        }
+        
         // Clear all intervals and timeouts
         this._intervals.forEach(interval => clearInterval(interval));
         this._timeouts.forEach(timeout => clearTimeout(timeout));
@@ -1207,13 +1219,33 @@ class IntroApp {
         });
         this._disposables = [];
         
+        // Dispose specific resources
+        if (this.portalMaterial) {
+            this.portalMaterial.dispose();
+        }
+        
+        if (this.starfieldTexture) {
+            this.starfieldTexture.dispose();
+        }
+        
+        if (this.portalSparkles) {
+            this.portalSparkles.forEach(({ geometry, material }) => {
+                geometry.dispose();
+                material.dispose();
+            });
+        }
+        
         // Clear references
         this.scene = null;
         this.camera = null;
         this.renderer = null;
         this.soldier = null;
         this.portal = null;
+        this.portalMaterial = null;
+        this.portalTrigger = null;
         this.particleSystem = null;
+        this.starfieldTexture = null;
+        this.portalSparkles = null;
     }
     
     onWindowResize() {
@@ -1260,7 +1292,7 @@ class IntroApp {
             return;
         }
         
-        requestAnimationFrame(() => this.animate());
+        this._raf = requestAnimationFrame(() => this.animate());
     }
     
     setupVisibilityHandling() {

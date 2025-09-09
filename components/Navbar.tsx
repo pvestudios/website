@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { CONFIG } from '@/lib/config';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [solid, setSolid] = useState(false);
@@ -15,7 +16,13 @@ export default function Navbar() {
     <header className={`sticky top-0 z-50 transition-all ${solid ? 'backdrop-blur-md bg-zinc-950/70 border-b border-zinc-800' : 'bg-transparent'}`}>
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <Link href="#" className="flex items-center gap-2 group">
-          <img src={CONFIG.nav.logo} alt={CONFIG.nav.logoAlt} className="h-8 w-8 rounded-full" />
+          <Image 
+            src={CONFIG.nav.logo} 
+            alt={CONFIG.nav.logoAlt} 
+            className="h-8 w-8 rounded-full" 
+            width={32}
+            height={32}
+          />
           <span className="font-semibold tracking-tight group-hover:glow-text">{CONFIG.nav.brandName}</span>
         </Link>
         <div className="hidden md:flex items-center gap-8 text-sm text-zinc-300">

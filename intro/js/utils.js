@@ -104,7 +104,7 @@ export class AssetLoader {
     static async loadGLTF(url, dracoLoader = null) {
         return new Promise((resolve, reject) => {
             // Import GLTFLoader dynamically to avoid module issues
-            import('./loaders/GLTFLoader.js').then(({ GLTFLoader }) => {
+            import('./js/loaders/GLTFLoader.js').then(({ GLTFLoader }) => {
                 const loader = new GLTFLoader();
                 
                 if (dracoLoader) {

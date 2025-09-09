@@ -16,13 +16,7 @@ html, body {
   @apply bg-[#00040d] text-zinc-100 antialiased scroll-smooth;
 }
 
-/* Glow helpers */
-.glow {
-  box-shadow: 0 0 24px theme(colors.brand.500 / 0.6), 0 0 48px theme(colors.brand.400 / 0.4);
-}
-.glow-text {
-  text-shadow: 0 0 16px rgba(57,255,20,.6), 0 0 32px rgba(0,240,255,.4);
-}
+/* Glow utilities are now handled by Tailwind plugin - see tailwind-plugins/glow.js */
 
 /* Section vertical rhythm */
 .section {

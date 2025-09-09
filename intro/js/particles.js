@@ -140,16 +140,11 @@ export class ParticleSystem {
         geometry.setAttribute('alpha', new THREE.BufferAttribute(alphas, 1));
         geometry.setAttribute('rotation', new THREE.BufferAttribute(rotations, 1));
         
-        const material = new THREE.ShaderMaterial({
-            uniforms: {
-                texture: { value: this.textures.get('smoke') },
-                time: { value: 0.0 }
-            },
-            vertexShader: ParticleShader.vertexShader,
-            fragmentShader: ParticleShader.fragmentShader,
-            transparent: true,
-            depthWrite: false,
-            blending: THREE.NormalBlending
+        const material = new THREE.PointsMaterial({ 
+            map: this.textures.get('smoke'), 
+            transparent: true, 
+            depthWrite: false, 
+            blending: THREE.NormalBlending 
         });
         
         const smoke = new THREE.Points(geometry, material);

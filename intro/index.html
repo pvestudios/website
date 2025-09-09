@@ -45,7 +45,7 @@
             </div>
             
             <!-- Mute toggle -->
-            <button id="intro-mute" class="mute-button" aria-label="Toggle audio">
+            <button id="intro-mute" class="mute-button" aria-label="Toggle audio" aria-pressed="false">
                 🔊
             </button>
             
@@ -61,7 +61,7 @@
         <!-- Loading screen -->
         <div id="loading-screen" class="loading-screen">
             <div class="loading-spinner"></div>
-            <div class="loading-text">Loading experience...</div>
+            <div class="loading-text" aria-live="polite">Loading experience...</div>
         </div>
         
         <!-- Fallback for no WebGL -->

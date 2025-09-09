@@ -194,9 +194,17 @@
     user-select: none;
 }
 
-/* Smooth transitions for all interactive elements */
-button, .progress-fill, .white-flash {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Smooth transitions for all interactive elements - scoped to specific properties */
+button {
+    transition: transform .2s, background-color .2s, border-color .2s, color .2s;
+}
+
+.progress-fill {
+    transition: width .3s;
+}
+
+.white-flash {
+    transition: opacity .28s;
 }
 
 /* White flash specific styling */

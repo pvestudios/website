@@ -23,6 +23,8 @@ const config: Config = {
       }
     }
   },
-  plugins: [],
+  plugins: [
+    require('./tailwind-plugins/glow.js'),
+  ],
 };
 export default config;

@@ -134,16 +134,17 @@ export const PortalShader = {
             
             gl_FragColor = vec4(baseColor, 1.0);
         }
-    `,
-    
-    transparent: true,
-    side: THREE.DoubleSide,
-    blending: THREE.AdditiveBlending
+    `
 };
 
 // White flash shader for the finish effect
 export const WhiteFlashShader = {
-    vertex: `
+    uniforms: {
+        opacity: { value: 0.0 },
+        intensity: { value: 1.0 }
+    },
+    
+    vertexShader: `
         varying vec2 vUv;
         
         void main() {
@@ -152,7 +153,7 @@ export const WhiteFlashShader = {
         }
     `,
     
-    fragment: `
+    fragmentShader: `
         uniform float opacity;
         uniform float intensity;
         
@@ -171,17 +172,17 @@ export const WhiteFlashShader = {
             vec3 color = vec3(1.0) * radial * intensity;
             gl_FragColor = vec4(color, opacity);
         }
-    `,
-    
-    uniforms: {
-        opacity: { value: 0.0 },
-        intensity: { value: 1.0 }
-    }
+    `
 };
 
 // Particle shader for smoke and fire effects
 export const ParticleShader = {
-    vertex: `
+    uniforms: {
+        texture: { value: null },
+        time: { value: 0.0 }
+    },
+    
+    vertexShader: `
         attribute float size;
         attribute float alpha;
         attribute float rotation;
@@ -199,7 +200,7 @@ export const ParticleShader = {
         }
     `,
     
-    fragment: `
+    fragmentShader: `
         uniform sampler2D texture;
         uniform float time;
         
@@ -229,10 +230,5 @@ export const ParticleShader = {
             
             gl_FragColor = vec4(texColor.rgb, finalAlpha);
         }
-    `,
-    
-    uniforms: {
-        texture: { value: null },
-        time: { value: 0.0 }
-    }
+    `
 };
