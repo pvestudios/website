@@ -1,4 +1,4 @@
-import type { NextConfig } from 'next';
+/** @type {import('next').NextConfig} */
 
 const csp = [
   "default-src 'self'",
@@ -20,7 +20,7 @@ const securityHeaders = [
   { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
 ];
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
   async headers() {
     return [
@@ -33,3 +33,5 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+
