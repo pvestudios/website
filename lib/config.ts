@@ -10,6 +10,9 @@ export const CONFIG: SiteConfig = {
     themeColor: '#00040d'
   },
 
+  // Wallet address used by copy buttons
+  walletAddress: 'DEVWALLET',
+
   // Navigation
   nav: {
     logo: '/logo-glow.png',

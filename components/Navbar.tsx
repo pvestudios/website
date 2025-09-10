@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { CONFIG } from '@/lib/config';
 import Image from 'next/image';
+import CopyAddy from './CopyAddy';
 
 export default function Navbar() {
   const [solid, setSolid] = useState(false);
@@ -33,6 +34,7 @@ export default function Navbar() {
           ))}
         </div>
         <div className="ml-4 inline-flex items-center gap-3">
+          <CopyAddy value={CONFIG.walletAddress} />
           <a
             href="https://x.com/PVEStudioInc"
             target="_blank"

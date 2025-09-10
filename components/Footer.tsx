@@ -1,6 +1,7 @@
 import Section from './Section';
 import { CONFIG } from '@/lib/config';
 import Image from 'next/image';
+import CopyAddy from './CopyAddy';
 
 export default function Footer() {
   return (
@@ -18,6 +19,7 @@ export default function Footer() {
             <span className="body-lg text-zinc-400">{CONFIG.footer.copyright}</span>
           </div>
           <nav className="flex items-center gap-6">
+            <CopyAddy value={CONFIG.walletAddress} />
             {CONFIG.footer.links.map((link) => (
               <a key={link.text} href={link.href} className="hover:text-zinc-200">
                 {link.text}

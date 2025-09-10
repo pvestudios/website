@@ -6,6 +6,7 @@ export interface SiteConfig {
     ogImage: string;
     themeColor: string;
   };
+  walletAddress: string;
   nav: {
     logo: string;
     logoAlt: string;
