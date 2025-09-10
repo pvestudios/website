@@ -7,10 +7,16 @@ const TweetEmbed = dynamic(() => import('./TweetEmbed'), { ssr: false, loading: 
 ) });
 
 export default function Testimonials() {
+  const title = CONFIG.testimonials.title;
   const tweets = CONFIG.testimonials.tweets;
   const total = tweets.length;
   return (
     <Section>
+      {title && (
+        <div className="mb-6">
+          <h2 className="heading-2">{title}</h2>
+        </div>
+      )}
       <div className="md:grid md:grid-cols-2 gap-6">
         {/* Mobile: full-width slides with snap; Desktop: standard grid */}
         <div className="overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory flex md:contents gap-4 pl-4 pr-4">

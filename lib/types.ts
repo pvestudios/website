@@ -49,6 +49,7 @@ export interface SiteConfig {
     }>;
   };
   testimonials: {
+    title?: string;
     tweets: Array<{
       tweetId: string;
       author: string;

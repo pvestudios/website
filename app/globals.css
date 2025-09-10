@@ -84,3 +84,11 @@ html, body {
   .subheading { @apply text-lg md:text-xl text-zinc-300 leading-relaxed; }
   .body-lg { @apply text-base md:text-lg leading-relaxed; }
 }
+
+/* Safe-area utilities for iOS notch/home-indicator devices */
+@layer utilities {
+  .pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+  .pt-safe { padding-top: max(env(safe-area-inset-top), 0px); }
+  .pl-safe { padding-left: max(env(safe-area-inset-left), 0px); }
+  .pr-safe { padding-right: max(env(safe-area-inset-right), 0px); }
+}

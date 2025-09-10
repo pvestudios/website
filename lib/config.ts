@@ -103,11 +103,11 @@ that's where **PVE Studios** comes in.`
         description: 'enough with the inside info or free allo. **anyone buys on market** and gets in at the price they deserve.'
       },
       {
-        title: '**100% COMMITMENT**',
+        title: '**FULL COMMITMENT**',
         description: 'we know how to dev properly. **narrative, content, listings**, and creative stunts to make our coins stand out.'
       },
       {
-        title: '**REAL**',
+        title: '**100% REAL NARRATIVES**',
         description: 'we will never launch cheap narratives: all tokens from PVE Studio have **proper research** and are built for the long-term.'
       }
     ]
@@ -115,6 +115,7 @@ that's where **PVE Studios** comes in.`
 
   // Testimonials section
   testimonials: {
+    title: 'we are all fed up!',
     tweets: [
       {
         tweetId: '1880413151738347743', // Replace with actual tweet ID
@@ -198,6 +199,10 @@ The only way to bring back the trenches is support communities grinding hard dai
       {
         question: 'Do you guarantee pumps or floors?',
         answer: 'No. We focus on fair launches and transparency (no bundles, no insiders). Outcomes are up to the market.'
+      },
+      {
+        question: 'Do you bundle, snipe, or trade your own tokens?',
+        answer: 'NEVER. At the same time you should always DYOR as there is no way for us to avoid other people from sniping or multiwalleting.'
       }
     ]
   },
