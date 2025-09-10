@@ -4,7 +4,7 @@ export const CONFIG: SiteConfig = {
   // Site metadata
   site: {
     name: 'PVE Studios',
-    url: 'https://example.com',
+    url: 'https://pve.studio',
     description: 'Up & to the right',
     ogImage: '/og-image.png',
     themeColor: '#00040d'
@@ -16,28 +16,28 @@ export const CONFIG: SiteConfig = {
     logoAlt: 'PVE Studios Logo',
     brandName: 'PVE Studios',
     links: [
-      { text: 'How it works', href: '#features' },
-      { text: 'Pricing', href: '#pricing' },
-      { text: 'FAQ', href: '#faq' }
+      { text: 'the PVE way', href: '#features' },
+      { text: 'tokens', href: '#pricing' },
+      { text: 'faqs', href: '#faq' }
     ],
     ctaButton: {
       text: 'ape now',
-      href: '#cta'
+      href: '#pricing'
     }
   },
 
   // Hero section
   hero: {
-    tagline: 'STOP THE BLOODSHED',
-    headline: 'We launch **organic runners** you can trust',
-    subheadline: 'No bundles, no insiders, no bullshit – FAIR for everyone. We focus on **building**, you focus on **trading safely**. Easy as that.',
+    tagline: 'PVE STUDIOS',
+    headline: 'we launch **organic runners** you can trust',
+    subheadline: 'no bundles, no insiders, no bullshit – FAIR for everyone. we focus on **building**, you focus on **trading safely**. easy as that.',
     primaryCta: {
       text: 'ape now',
-      href: '#cta'
+      href: '#pricing'
     },
     secondaryCta: {
-      text: 'how it works',
-      href: '#features'
+      text: 'why trust PVE?',
+      href: '#problem'
     },
     logo: {
       src: '/logo-glow.png',
@@ -47,24 +47,22 @@ export const CONFIG: SiteConfig = {
 
   // Problem section
   problem: {
-    title: 'What tf is wrong with the **trenches**?!',
-    description: `yeah, we all know: **99% of tokens** out there are straight-up scams.
+    title: 'what tf is wrong with the **trenches**?!',
+    description: `yeah, **99% of tokens** out there are straight-up scams.
     
-Devs don't care about building — they care about **squeezing every last drop** out of you.
+devs don't care about building, they care about **squeezing every last drop** out of you.
 
-They launch, they farm, they dump, and they get paid to do so (hello, creator fees).
+they launch, they farm, they dump, and they get paid to do so (gm, creator fees).
 
-And what about you, the trader?
+what about you, the **trader**? You're already taking the risk of gambling.
 
-You're already taking the risk of of trading shitters. We all know the game.
+and scams on top of that? **Rug after rug after rug**? that's straight robbery.
 
-But **scams on top of that**? Rug after rug after rug? That's straight robbery.
+it doesn't have to be this way. You deserve a **fair shot** in the trenches.
 
-It doesn't have to be this way. You deserve a **fair shot** in the trenches.
+you deserve a place where devs dev, and traders trade — without someone picking your pockets at every turn.
 
-You deserve a place where devs dev, and traders trade — without someone picking your pockets at every turn.
-
-That's where **PVE Studios** comes in.`
+that's where **PVE Studios** comes in.`
   },
 
   // Solution section
@@ -91,23 +89,23 @@ That's where **PVE Studios** comes in.`
 
   // Features section
   features: {
-    title: 'What we **promise**',
+    title: 'what we **promise**',
     items: [
       {
         title: '**ZERO BUNDLES**',
-        description: 'We will never bundle, snipe, or trade our own tokens. **We make money on fees**, you gamble safely. Deal?'
+        description: 'we will never bundle, snipe, or trade our own tokens. **we make money on fees**, you gamble safely. deal?'
       },
       {
         title: '**ZERO INSIDERS**',
-        description: 'Enough with the inside info or free allo. **Anyone buys on market** and gets in at the price they deserve.'
+        description: 'enough with the inside info or free allo. **anyone buys on market** and gets in at the price they deserve.'
       },
       {
         title: '**100% COMMITMENT**',
-        description: 'We know how to dev properly. **Narrative, content, listings**, and creative stunts to make our coins stand out.'
+        description: 'we know how to dev properly. **narrative, content, listings**, and creative stunts to make our coins stand out.'
       },
       {
-        title: '**RESEARCH**',
-        description: 'We will never launch cheap narratives: all tokens from PVE Studio have **proper research** and are built for the long-term.'
+        title: '**REAL**',
+        description: 'we will never launch cheap narratives: all tokens from PVE Studio have **proper research** and are built for the long-term.'
       }
     ]
   },
@@ -161,18 +159,18 @@ The only way to bring back the trenches is support communities grinding hard dai
 
   // Pricing section
   pricing: {
-    title: 'THE PVE WAY',
+    title: 'Our Tokens',
     plans: [
       {
-        name: '',
-        price: 'PVE TOKENS',
+        name: 'PVE Genesis',
+        price: 'Coming soon',
         period: '',
         features: [
-          'coming soon',
-          'coming soon',
-          'coming soon'
+          'Fair launch',
+          'No bundles',
+          'Banger meme'
         ],
-        ctaText: 'check\'em out',
+        ctaText: 'View on Solscan',
         highlighted: true
       }
     ]
@@ -183,27 +181,31 @@ The only way to bring back the trenches is support communities grinding hard dai
     title: 'FAQs',
     questions: [
       {
-        question: 'Is it mobile-first?',
-        answer: 'Yes. The layout is designed from small to large screens with fluid spacing.'
+        question: 'Does this mean the coin will only go up?',
+        answer: 'No. Markets are volatile and risky. We don\'t control price action and we don\'t promise performance.'
       },
       {
-        question: 'Can I change colors?',
-        answer: 'All colors live in Tailwind config and CSS variables for quick updates.'
+        question: 'Is this financial advice?',
+        answer: 'No. Nothing here is investment advice. Do your own research and never risk more than you can afford to lose.'
       },
       {
-        question: 'Is it accessible?',
-        answer: 'Typography, contrast, and keyboard navigation follow WCAG 2.2 guidance.'
+        question: 'Can I lose money?',
+        answer: 'Yes. Tokens can go to zero. Liquidity can change quickly. Treat everything here as experimental and high‑risk.'
+      },
+      {
+        question: 'Do you guarantee pumps or floors?',
+        answer: 'No. We focus on fair launches and transparency (no bundles, no insiders). Outcomes are up to the market.'
       }
     ]
   },
 
   // Final CTA section
   finalCta: {
-    headline: 'Join the PVE',
-    description: 'Start trading safely today!',
+    headline: 'join the PVE',
+    description: 'the trenches can be saved',
     ctaButton: {
-      text: 'Get Started',
-      href: '#'
+      text: 'follow us',
+      href: 'https://x.com/PVEStudioInc'
     }
   },
 
@@ -215,9 +217,9 @@ The only way to bring back the trenches is support communities grinding hard dai
     },
     copyright: `© ${new Date().getFullYear()} PVE Studios, Inc.`,
     links: [
-      { text: 'How it works', href: '#features' },
-      { text: 'Our coins', href: '#pricing' },
-      { text: 'FAQs', href: '#faq' }
+      { text: 'the PVE way', href: '#features' },
+      { text: 'tokens', href: '#pricing' },
+      { text: 'faqs', href: '#faq' }
     ]
   }
 };

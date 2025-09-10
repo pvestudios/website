@@ -20,7 +20,7 @@ html, body {
 
 /* Section vertical rhythm */
 .section {
-  @apply py-10 md:py-10;
+  @apply py-6 md:py-10;
 }
 
 /* Card styling */
@@ -38,6 +38,15 @@ html, body {
   background-image: radial-gradient(ellipse at 20% 10%, rgba(57,255,20,0.12), transparent 40%),
     radial-gradient(ellipse at 80% 20%, rgba(0,240,255,0.12), transparent 40%),
     radial-gradient(ellipse at 50% 80%, rgba(138,43,226,0.12), transparent 40%);
+}
+
+/* Gradient utility classes moved from inline styles (for CSP) */
+.bg-hero-conic {
+  background: conic-gradient(from 180deg at 50% 50%, rgba(57,255,20,0.35), rgba(0,240,255,0.35), rgba(138,43,226,0.35), rgba(255,234,0,0.25), rgba(57,255,20,0.35));
+}
+
+.bg-cta-radial {
+  background: radial-gradient(60% 60% at 50% 50%, rgba(57,255,20,0.25), transparent), radial-gradient(40% 40% at 80% 20%, rgba(0,240,255,0.25), transparent), radial-gradient(40% 40% at 20% 80%, rgba(138,43,226,0.25), transparent);
 }
 
 /* Tweet styling */
@@ -62,4 +71,16 @@ html, body {
 /* Hide any stray overflow from internal inline styles */
 .tweet-container {
   overflow: hidden;
+}
+
+/* Hide horizontal scrollbar for touch sliders */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@layer components {
+  .eyebrow { @apply text-xs uppercase tracking-[0.2em] text-zinc-400; }
+  .heading-1 { @apply font-display text-4xl md:text-6xl font-extrabold leading-tight glow-text; }
+  .heading-2 { @apply font-display text-3xl md:text-4xl font-bold; }
+  .subheading { @apply text-lg md:text-xl text-zinc-300 leading-relaxed; }
+  .body-lg { @apply text-base md:text-lg leading-relaxed; }
 }

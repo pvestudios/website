@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <header className={`sticky top-0 z-50 transition-all ${solid ? 'backdrop-blur-md bg-zinc-950/70 border-b border-zinc-800' : 'bg-transparent'}`}>
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <Link href="#" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group">
           <Image 
             src={CONFIG.nav.logo} 
             alt={CONFIG.nav.logoAlt} 
@@ -32,9 +32,21 @@ export default function Navbar() {
             </a>
           ))}
         </div>
-        <a href={CONFIG.nav.ctaButton.href} className="ml-4 inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold bg-brand-500/90 hover:bg-brand-500 transition glow">
-          {CONFIG.nav.ctaButton.text}
-        </a>
+        <div className="ml-4 inline-flex items-center gap-3">
+          <a
+            href="https://x.com/PVEStudioInc"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter) — @PVEStudioInc"
+            title="X (Twitter) — @PVEStudioInc"
+            className="inline-flex items-center justify-center rounded-lg p-2 hover:bg-zinc-900/60 border border-transparent hover:border-zinc-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          >
+            <Image src="/x.png" alt="X" width={64} height={64} className="h-7 w-7 md:h-8 md:w-8" />
+          </a>
+          <a href={CONFIG.nav.ctaButton.href} className="inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold bg-brand-500/90 hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 transition glow">
+            {CONFIG.nav.ctaButton.text}
+          </a>
+        </div>
       </nav>
     </header>
   );

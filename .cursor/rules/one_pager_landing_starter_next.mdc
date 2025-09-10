@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
     type: 'website'
   },
-  metadataBase: new URL('https://example.com'),
+  metadataBase: new URL('https://pve.studio'),
   themeColor: '#00040d'
 };
 
@@ -463,8 +463,8 @@ export default function Footer() {
 
 ```ts
 export const SITE = {
-  name: 'Glowing Arrow',
-  url: 'https://example.com'
+  name: 'PVE Studios',
+  url: 'https://pve.studio'
 };
 ```
 

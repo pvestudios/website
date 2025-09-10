@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 
 export default function Page() {
   return (
-    <main className="bg-grid min-h-screen">
+    <main id="main" className="bg-grid min-h-screen">
       <Navbar />
       <Hero />
       <Problem />
@@ -22,6 +22,14 @@ export default function Page() {
       <FAQ />
       <FinalCTA />
       <Footer />
+      {/* Sticky mobile buy bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-zinc-800 bg-zinc-950/80 backdrop-blur">
+        <div className="mx-auto max-w-6xl px-4 py-3">
+          <a href="https://jup.ag/swap/SOL-YOURTOKEN" className="w-full inline-flex justify-center rounded-xl px-4 py-3 font-semibold bg-brand-500 hover:bg-brand-500/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 transition">
+            Ape Now
+          </a>
+        </div>
+      </div>
     </main>
   );
 }

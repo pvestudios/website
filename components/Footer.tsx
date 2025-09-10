@@ -15,7 +15,7 @@ export default function Footer() {
               width={24}
               height={24}
             />
-            <span>{CONFIG.footer.copyright}</span>
+            <span className="body-lg text-zinc-400">{CONFIG.footer.copyright}</span>
           </div>
           <nav className="flex items-center gap-6">
             {CONFIG.footer.links.map((link) => (
