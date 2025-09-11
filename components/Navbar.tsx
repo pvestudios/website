@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <header className={`sticky top-0 z-50 transition-all ${solid ? 'backdrop-blur-md bg-zinc-950/70 border-b border-zinc-800' : 'bg-transparent'}`}>
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group min-w-0">
+        <Link href="/" className="flex items-center gap-2 group">
           <Image 
             src={CONFIG.nav.logo} 
             alt={CONFIG.nav.logoAlt} 
@@ -24,7 +24,7 @@ export default function Navbar() {
             width={32}
             height={32}
           />
-          <span className="font-semibold tracking-tight group-hover:glow-text truncate max-w-[50vw] sm:max-w-none">{CONFIG.nav.brandName}</span>
+          <span className="font-semibold tracking-tight group-hover:glow-text">{CONFIG.nav.brandName}</span>
         </Link>
         <div className="hidden md:flex items-center gap-8 text-sm text-zinc-300">
           {CONFIG.nav.links.map((link) => (
@@ -33,7 +33,7 @@ export default function Navbar() {
             </a>
           ))}
         </div>
-        <div className="ml-4 inline-flex items-center gap-2 sm:gap-3 shrink-0">
+        <div className="ml-4 inline-flex items-center gap-3">
           <CopyAddy value={CONFIG.walletAddress} />
           <a
             href="https://x.com/PVEStudioInc"

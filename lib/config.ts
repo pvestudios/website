@@ -51,7 +51,7 @@ export const CONFIG: SiteConfig = {
   // Problem section
   problem: {
     title: 'what tf is wrong with the **trenches**?!',
-    description: `yeah, **99% of tokens** out there are straight-up scams.
+    description: `**99% of tokens** out there are straight-up scams.
     
 devs don't care about building, they care about **squeezing every last drop** out of you.
 

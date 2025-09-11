@@ -24,11 +24,11 @@ export default function CopyAddy({ value, className }: CopyAddyProps) {
     <button
       type="button"
       onClick={onCopy}
-      className={`inline-flex items-center gap-1 sm:gap-2 rounded-lg px-2 sm:px-3 py-1.5 text-sm font-medium border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/60 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${className ?? ''}`}
+      className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/60 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${className ?? ''}`}
       aria-label="Copy address"
       title={copied ? 'Copied!' : 'Copy address'}
     >
-      <span className="hidden sm:inline text-zinc-200">addy</span>
+      <span className="text-zinc-200">addy</span>
       <span className={`text-zinc-400 ${copied ? 'text-brand-500' : ''}`} aria-hidden="true">
         {copied ? (
           <svg
