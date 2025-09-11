@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Inter, Sora } from 'next/font/google';
 import { CONFIG } from '@/lib/config';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const sora = Sora({ subsets: ['latin'], variable: '--font-display' });
@@ -47,8 +48,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${sora.variable} ${inter.className}`}>
       <body className="bg-[#00040d]">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-zinc-900 focus:text-white focus:px-3 focus:py-2 focus:ring-2 focus:ring-brand-500">Skip to content</a>
-        <script
+        <Script
+          id="org"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",

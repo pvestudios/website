@@ -223,7 +223,7 @@ The only way to bring back the trenches is support communities grinding hard dai
       src: '/logo-glow.png',
       alt: 'Logo'
     },
-    copyright: `© ${new Date().getFullYear()} PVE Studios, Inc.`,
+    copyright: `© 2025 PVE Studios, Inc.`,
     links: [
       { text: 'the PVE way', href: '#features' },
       { text: 'tokens', href: '#pricing' },

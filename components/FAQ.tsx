@@ -10,14 +10,14 @@ export default function FAQ() {
           <details key={i} className="group open:bg-zinc-900/50 px-6 py-4">
             <summary className="cursor-pointer list-none font-medium text-zinc-100 flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">
               {faq.question}
-              <span className="text-brand-400 group-open:rotate-45 transition">+</span>
+              <span aria-hidden="true" className="text-brand-400 group-open:rotate-45 transition">+</span>
             </summary>
             <p className="mt-3 text-zinc-300">{faq.answer}</p>
           </details>
         ))}
       </div>
       <p className="mt-4 text-xs text-zinc-500">
-        Disclaimer: Tokens are highly volatile and risky. Nothing here is financial advice. Always do your own research.
+        Disclaimer: Tokens are highly volatile and risky. Nothing here is financial advice. Know the game you're playing & always do your own research.
       </p>
     </Section>
   );

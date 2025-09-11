@@ -5,11 +5,12 @@ const isDev = process.env.NODE_ENV === 'development';
 const csp = [
   "default-src 'self'",
   "base-uri 'self'",
-  "img-src 'self' data: https://pbs.twimg.com https://ton.twimg.com blob:",
+  "img-src 'self' data: https://pbs.twimg.com https://ton.twimg.com https://abs.twimg.com blob:",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
   `connect-src 'self' https://react-tweet.vercel.app${isDev ? ' ws:' : ''}`,
+  "object-src 'none'",
   "frame-ancestors 'none'",
 ].join('; ');
 
