@@ -17,7 +17,7 @@ export default function FAQ() {
         ))}
       </div>
       <p className="mt-4 text-xs text-zinc-500">
-        Disclaimer: Tokens are highly volatile and risky. Nothing here is financial advice. Know the game you're playing & always do your own research.
+        Disclaimer: Tokens are highly volatile and risky. Nothing here is financial advice. Know the game you&#39;re playing &amp; always do your own research.
       </p>
     </Section>
   );
