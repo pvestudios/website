@@ -45,9 +45,6 @@ export default function Navbar() {
           >
             <Image src="/x.png" alt="X" width={64} height={64} className="h-7 w-7 md:h-8 md:w-8" />
           </a>
-          <a href={CONFIG.nav.ctaButton.href} className="inline-flex items-center rounded-xl px-4 py-2 text-sm font-semibold bg-brand-500/90 hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 transition glow">
-            {CONFIG.nav.ctaButton.text}
-          </a>
         </div>
       </nav>
     </header>
